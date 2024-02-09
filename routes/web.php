@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarsControlle;
+use App\Http\Controllers\CarsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,13 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     //
+    Route::get('/auto/aanbod', function () {
+    return view('createOffer');
+    });
+     Route::get('/auto/aanbod/stap2', function () {
+    return view('createOfferStep2');
+    });
+    
 });
 
 Route::get('/submit', function () {
