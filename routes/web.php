@@ -27,11 +27,14 @@ Route::middleware('auth')->group(function () {
      Route::get('/auto/aanbod/stap2', function () {
     return view('createOfferStep2');
     });
-    
+Route::post('/auto/aanbod/stap2', 'OfferController@createStep2')->name('createOfferStep2');
 });
 
-Route::get('/submit', function () {
+Route::get('/mycars', function () {
     return view('auth.submit');
+});
+Route::get('/submit', function () {
+    return view('auth.mycars');
 });
 
 require __DIR__.'/auth.php';
