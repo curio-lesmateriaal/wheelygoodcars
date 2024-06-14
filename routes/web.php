@@ -19,16 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware('auth')->group(function () {
-    //
-    Route::get('/auto/aanbod', function () {
-    return view('createOffer');
-    });
-     Route::get('/auto/aanbod/stap2', function () {
-    return view('createOfferStep2');
-    });
-    
-});
+
 
 Route::get('/mycars', function () {
     return view('auth.submit');
@@ -38,3 +29,12 @@ Route::get('/submit', function () {
 });
 
 require __DIR__.'/auth.php';
+// routes/web.php
+
+use App\Http\Controllers\CarController;
+Route::middleware(['auth'])->group(function () {
+    Route::get('/step1', [App\Http\Controllers\CarController::class, 'step1'])->name('step1');
+    Route::post('/step1', [App\Http\Controllers\CarController::class, 'postStep1']);
+    Route::get('/step2', [App\Http\Controllers\CarController::class, 'step2'])->name('step2');
+    Route::post('/step2', [App\Http\Controllers\CarController::class, 'postStep2']);
+});
