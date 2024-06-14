@@ -15,7 +15,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link text-light" href="">Alle auto's</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="cars">Alle auto's</a></li>
                             @auth
                                 <li class="nav-item"><a class="nav-link text-light" href="/mycars">Mijn aanbod</a></li>
                                 <li class="nav-item"><a class="nav-link text-light" href="/step1">Aanbod plaatsen</a></li>

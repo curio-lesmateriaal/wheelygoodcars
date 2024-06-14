@@ -72,6 +72,23 @@ class CarController extends Controller
         return redirect()->route('step1')->with('success', 'Auto succesvol opgeslagen!');
     }
 
+    // Toon alle auto's op de publieke advertentiepagina
+    public function publicIndex()
+    {
+        $cars = Car::all(); // Haal alle auto's op
+        return view('cars.publicIndex', compact('cars'));
+    }
+
+    // Toon details van een specifieke auto
+    public function publicShow(Car $car)
+    {
+        // Verhoog het aantal weergaven voor deze auto
+        $car->increment('views');
+
+        return view('cars.publicShow', compact('car'));
+    }
+
+
     // Toon alle auto's van de ingelogde gebruiker
     public function index()
     {
