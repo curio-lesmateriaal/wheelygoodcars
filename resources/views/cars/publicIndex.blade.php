@@ -1,5 +1,3 @@
-<!-- resources/views/cars/publicIndex.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -13,7 +11,11 @@
                             alt="{{ $car->brand }} {{ $car->model }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
-                            <p class="card-text">Prijs: €{{ $car->price }}</p>
+                            @if ($car->sold_at)
+                                <p class="card-text">Status: Verkocht</p>
+                            @else
+                                <p class="card-text">Prijs: €{{ $car->price }}</p>
+                            @endif
                             <p class="card-text">Kilometerstand: {{ $car->mileage }} km</p>
                             <p class="card-text">Bouwjaar: {{ $car->production_year }}</p>
                             <p class="card-text">Geplaatst door: {{ $car->user->name }}</p>
