@@ -1,51 +1,33 @@
 @extends('layouts.app')
+
 @section('content')
-
-
-<table>
-    <thead>
-        <tr>
-            <th>License Plate</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Price</th>
-            <th>Mileage</th>
-            <th>Seats</th>
-            <th>Doors</th>
-            <th>Production Year</th>
-            <th>Weight</th>
-            <th>Color</th>
-            <th>Image</th>
-            <th>Sold At</th>
-            <th>Views</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($cars as $car)
-        <tr>
-            <td>{{ $car->license_plate }}</td>
-            <td>{{ $car->make }}</td>
-            <td>{{ $car->model }}</td>
-            <td>{{ $car->price }}</td>
-            <td>{{ $car->mileage }}</td>
-            <td>{{ $car->seats }}</td>
-            <td>{{ $car->doors }}</td>
-            <td>{{ $car->production_year }}</td>
-            <td>{{ $car->weight }}</td>
-            <td>{{ $car->color }}</td>
-            <td>{{ $car->image }}</td>
-            <td>{{ $car->sold_at }}</td>
-            <td>{{ $car->views }}</td>
-            <td>{{ $car->created_at }}</td>
-            <td>{{ $car->updated_at }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-
+    <div class="container">
+        <h1>Mijn Auto's</h1>
+        <div class="row">
+            @if (!is_null($cars) && !$cars->isEmpty())
+                @foreach ($cars as $car)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $car->brand }} - {{ $car->model }}</h5>
+                                <p class="card-text">Kenteken: {{ $car->license_plate }}</p>
+                                <p class="card-text">Prijs: €{{ $car->price }}</p>
+                                <!-- Voeg hier andere informatie toe zoals gewenst -->
+                                <a href="{{ route('cars.edit', $car) }}" class="btn btn-primary">Bewerken</a>
+                                <form action="{{ route('cars.destroy', $car) }}" method="POST"
+                                    style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Weet je zeker dat je deze auto wilt verwijderen?')">Verwijderen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p>Je hebt nog geen auto's toegevoegd.</p>
+            @endif
+        </div>
+    </div>
 @endsection
-
-

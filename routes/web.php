@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\CarsControlle;
-use App\Http\Controllers\CarsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application.
-| These routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| These routes are loaded by the RouteServiceProvider and assigned to the "web" middleware group.
 |
 */
 
@@ -19,22 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mycars', [CarController::class, 'index'])->name('mycars');
+    Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');
+    Route::post('/cars/{car}/update', [CarController::class, 'update'])->name('cars.update');
+    Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
 
-
-Route::get('/mycars', function () {
-    return view('auth.submit');
-});
-Route::get('/submit', function () {
-    return view('auth.mycars');
+    Route::get('/step1', [CarController::class, 'step1'])->name('step1');
+    Route::post('/step1', [CarController::class, 'postStep1']);
+    Route::get('/step2', [CarController::class, 'step2'])->name('step2');
+    Route::post('/step2', [CarController::class, 'postStep2']);
 });
 
 require __DIR__.'/auth.php';
-// routes/web.php
-
-use App\Http\Controllers\CarController;
-Route::middleware(['auth'])->group(function () {
-    Route::get('/step1', [App\Http\Controllers\CarController::class, 'step1'])->name('step1');
-    Route::post('/step1', [App\Http\Controllers\CarController::class, 'postStep1']);
-    Route::get('/step2', [App\Http\Controllers\CarController::class, 'step2'])->name('step2');
-    Route::post('/step2', [App\Http\Controllers\CarController::class, 'postStep2']);
-});
