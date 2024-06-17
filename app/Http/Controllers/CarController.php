@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use Auth;
 use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {

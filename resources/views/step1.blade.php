@@ -16,9 +16,9 @@
                         </span>
                     </div>
                     <input type="text" id="license_plate" name="license_plate" class="form-control license-plate-input"
-                        placeholder="XX-99-99 or X-999-TG" pattern="[A-Z]{2}-\d{2}-\d{2}|[A-Z]-\d{3}-[A-Z]{2}" required>
-
-
+                        placeholder="XX-99-99, X-999-TG, of andere geldige formaten"
+                        pattern="([A-Z]{2}-\d{2}-\d{2})|([A-Z]{2}-\d{2}-[A-Z]{2})|([A-Z]{2}-\d{3}-[A-Z])|([A-Z]-\d{3}-[A-Z]{2})|(\d{2}-[A-Z]{2}-\d{2})|(\d{2}-[A-Z]{3}-\d)|(\d-[A-Z]{3}-\d{2})|(\d{3}-[A-Z]{2}-\d{1})"
+                        required>
                 </div>
                 <small id="license_plate_help" class="form-text text-muted">Voorbeeld: XX-99-99</small>
             </div>
