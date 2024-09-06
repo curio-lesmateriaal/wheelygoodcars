@@ -20,3 +20,68 @@ $font-family-sans-serif: 'Open Sans', sans-serif;
     justify-content: center;
     align-items: center;
 }
+/* public/css/app.css */
+
+.license-plate-input {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #ffcc00;
+    /* Geel voor de input */
+    border-color: #ffcc00;
+    /* Gele randkleur */
+    color: #333333;
+    /* Tekstkleur voor contrast */
+}
+
+.input-group-prepend {
+    flex: 0 0 auto;
+}
+
+.input-group-text {
+    background-color: #0033a0;
+    /* Diepblauw voor het blok met NL en vlag */
+    color: #ffffff;
+    /* Witte tekst voor contrast */
+    border-color: #0033a0;
+    /* Randkleur voor het blok */
+    border-top-right-radius: 0;
+    /* Ronding van de rechterbovenhoek verwijderen */
+    border-bottom-right-radius: 0;
+    /* Ronding van de rechteronderhoek verwijderen */
+    padding: 0.375rem 0.75rem;
+}
+
+.input-group-prepend .nl-flag {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: hsl(28, 100%, 50%);
+    /* Gebruik hsl(28, 100%, 50%) voor de knop */
+    border-color: hsl(28, 100%, 50%);
+    /* Randkleur gelijk aan achtergrondkleur */
+    color: #ffffff;
+    /* Witte tekst voor contrast */
+    border-radius: 0;
+    /* Ronding van de knop verwijderen */
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: hsl(28, 90%, 45%);
+    /* Kleur bij hover/focus (lichtere tint) */
+    border-color: hsl(28, 90%, 45%);
+}
+
+.btn-primary:focus {
+    background-color: #e6b800;
+    /* Kleur bij hover/focus */
+    border-color: #e6b800;
+}
+
+/* Specifieke stijl om de uitgeschakelde achtergrondkleur te overschrijven */
+.license-plate-input:disabled {
+    background-color: #ffcc00;
+    opacity: 1;
+}

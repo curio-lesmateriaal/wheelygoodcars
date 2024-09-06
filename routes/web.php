@@ -1,24 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// routes/web.php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\CarController;
+// routes/web.php
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware('auth')->group(function () {
-    //
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mycars', [CarController::class, 'index'])->name('mycars');
+    Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');
+    Route::put('cars/{car}/update', [CarController::class, 'update'])->name('cars.update');
+    Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
+    Route::get('/cars/{car}/pdf', [CarController::class, 'generatePdf'])->name('cars.pdf');
+
+    Route::get('/step1', [CarController::class, 'step1'])->name('step1');
+    Route::post('/step1', [CarController::class, 'postStep1']);
+    Route::get('/step2', [CarController::class, 'step2'])->name('step2');
+    Route::post('/step2', [CarController::class, 'postStep2']);
+
 });
+
+// Public routes
+Route::get('/cars', [CarController::class, 'publicIndex'])->name('cars.publicIndex');
+Route::get('/cars/{car}', [CarController::class, 'publicShow'])->name('cars.publicShow');
 
 require __DIR__.'/auth.php';
